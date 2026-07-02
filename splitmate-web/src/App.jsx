@@ -4,6 +4,9 @@ import Layout from './components/Layout';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import AccountDetail from './pages/AccountDetail';
+import NewAccount from './pages/NewAccount';
+import SettleUp from './pages/SettleUp';
+import AddExpense from './pages/AddExpense';
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore((state) => state.token);
@@ -20,14 +23,14 @@ export default function App() {
 
         {/* Protected — all wrapped in Layout (sidebar) */}
         <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/accounts/new" element={<ProtectedRoute><NewAccount /></ProtectedRoute>} />
         <Route path="/accounts/:id" element={<ProtectedRoute><AccountDetail /></ProtectedRoute>} />
+        <Route path="/accounts/:id/settle" element={<ProtectedRoute><SettleUp /></ProtectedRoute>} />
+        <Route path="/accounts/:id/expenses/new" element={<ProtectedRoute><AddExpense /></ProtectedRoute>} />
 
         {/* Placeholders — add pages here as you build them */}
         <Route path="/people"               element={<ProtectedRoute><Placeholder title="People" /></ProtectedRoute>} />
         <Route path="/accounts"             element={<ProtectedRoute><Placeholder title="Accounts" /></ProtectedRoute>} />
-        <Route path="/accounts/new"         element={<ProtectedRoute><Placeholder title="New account" /></ProtectedRoute>} />
-        <Route path="/accounts/:id/settle"  element={<ProtectedRoute><Placeholder title="Settle up" /></ProtectedRoute>} />
-        <Route path="/accounts/:id/expenses/new" element={<ProtectedRoute><Placeholder title="Add expense" /></ProtectedRoute>} />
         <Route path="/expenses"             element={<ProtectedRoute><Placeholder title="Expenses" /></ProtectedRoute>} />
         <Route path="/ledger/:userId"       element={<ProtectedRoute><Placeholder title="Person ledger" /></ProtectedRoute>} />
 
